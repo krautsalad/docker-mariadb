@@ -1,6 +1,6 @@
 # docker-mariadb
 
-MariaDB with memory-based tuning, optional slow-query logging, and optional scheduled table optimization.
+MariaDB with memory tuning, optional slow-query logging, and scheduled table optimization.
 
 **docker-mariadb** extends the official [MariaDB Docker image](https://hub.docker.com/_/mariadb). At startup it generates a tuned `my.cnf` from environment variables, runs MariaDB under supervisord together with cron, and can schedule `mariadb-check --optimize` jobs.
 
