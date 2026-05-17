@@ -2,6 +2,9 @@
 set -eo pipefail
 shopt -s nullglob
 
+mkdir -p /var/log/cron
+ln -sf /proc/$$/fd/1 /var/log/cron/cron.log
+
 # see mariabdb-docker/entrypoint.sh
 file_env() {
     local var="$1"
@@ -29,9 +32,9 @@ rm -f /etc/cron.d/mariadb-optimize
 
 if [[ "$(printf '%s' "$OPTIMIZE_ENABLED" | tr '[:upper:]' '[:lower:]')" =~ ^(1|on|true|yes)$ ]]; then
     if [ -n "${MARIADB_ROOT_PASSWORD:-}" ]; then
-        echo "${OPTIMIZE_SCHEDULE} root mariadb-check -p${MARIADB_ROOT_PASSWORD} -u root --all-databases --optimize" > /etc/cron.d/mariadb-optimize
+        echo "${OPTIMIZE_SCHEDULE} root mariadb-check -p${MARIADB_ROOT_PASSWORD} -u root --all-databases --optimize >> /var/log/cron/cron.log 2>&1" > /etc/cron.d/mariadb-optimize
     else
-        echo "${OPTIMIZE_SCHEDULE} root mariadb-check -u root --all-databases --optimize" > /etc/cron.d/mariadb-optimize
+        echo "${OPTIMIZE_SCHEDULE} root mariadb-check -u root --all-databases --optimize >> /var/log/cron/cron.log 2>&1" > /etc/cron.d/mariadb-optimize
     fi
 fi
 
