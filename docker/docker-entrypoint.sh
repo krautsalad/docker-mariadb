@@ -51,7 +51,7 @@ fi
 # see database.gkanev.com
 memory_bytes=$(awk -v gb="$memory_gb" 'BEGIN { printf "%d", gb * 1073741824 }')
 innodb_buffer_pool_size=$(awk -v b="$memory_bytes" 'BEGIN { printf "%d", b * 65 / 100 }')
-innodb_io_capacity=$(awk -v gb="$memory_gb" 'BEGIN { printf "%d", gb * 80 }')
+innodb_io_capacity=$(awk -v gb="$memory_gb" 'BEGIN { c = gb * 80; if (c < 100) c = 100; printf "%d", c }')
 innodb_io_capacity_max=$(awk -v c="$innodb_io_capacity" 'BEGIN { printf "%d", c * 2 }')
 innodb_log_file_size=$(awk -v b="$innodb_buffer_pool_size" 'BEGIN { printf "%d", b * 25 / 100 }')
 key_buffer_size=$(awk -v b="$memory_bytes" 'BEGIN { printf "%d", b * 10 / 100 }')
