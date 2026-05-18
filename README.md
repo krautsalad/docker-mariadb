@@ -72,7 +72,7 @@ See the [official documentation](https://hub.docker.com/_/mariadb) for the full 
 
 ## How it works
 
-At container start, the custom entrypoint reads the tuning variables, substitutes placeholders in `my.cnf.template`, and writes `/etc/mysql/conf.d/zz-overrides-initial.cnf`. If `OPTIMIZE_ENABLED` is on, it installs a cron file at `/etc/cron.d/mariadb-optimize`.
+At container start, the custom entrypoint reads the tuning variables, substitutes placeholders in `my.cnf.template`, and writes `/etc/mysql/conf.d/zz-overrides-initial.cnf`. You can optionally override MariaDB settings further by mounting a custom `my.cnf` to `/etc/mysql/conf.d/zz-overrides.cnf`, as in the Docker Compose example above. If `OPTIMIZE_ENABLED` is on, it installs a cron file at `/etc/cron.d/mariadb-optimize`.
 
 Supervisord then starts MariaDB (via the official image entrypoint) and `crond` for scheduled jobs. Database files are stored under `/var/lib/mysql`; mount a volume there to persist data.
 
