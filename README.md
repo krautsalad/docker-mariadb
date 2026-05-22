@@ -50,7 +50,7 @@ services:
 | Variable | Default | Description |
 | --- | --- | --- |
 | `LONG_QUERY_TIME` | `3` | Queries running longer than this many seconds are logged when slow query logging is enabled. |
-| `MEMORY_GB` | `0.5` | Memory budget for the database in gigabytes. |
+| `MEMORY_GB` | `0.5` | Memory budget for the database in gigabytes (minimum `0.5`). |
 | `OPTIMIZE_ENABLED` | `0` | Enables the cron job which reorganizes table storage and indexes to reduce fragmentation and reclaim unused space. |
 | `OPTIMIZE_SCHEDULE` | `0 1 * * 6` | Cron expression for the optimize job (default: Saturday at 01:00). Only used when the cron job is enabled. |
 | `SLOW_QUERY_LOG` | `0` | Enables slow query logging. |
