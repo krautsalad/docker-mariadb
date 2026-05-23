@@ -66,7 +66,7 @@ This image supports the upstream variables. Common ones:
 | `MARIADB_PASSWORD` | — | Password for `MARIADB_USER`. |
 | `MARIADB_ROOT_PASSWORD` | — | Root password. |
 | `MARIADB_USER` | — | Non-root user created on first start (used with `MARIADB_PASSWORD`). |
-| `TZ` | `UTC` | Timezone for logs and cron. |
+| `TZ` | `UTC` | Timezone. |
 
 See the [official documentation](https://hub.docker.com/_/mariadb) for the full list.
 
